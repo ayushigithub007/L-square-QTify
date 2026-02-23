@@ -11,10 +11,12 @@ const Controls = ({ data }) => {
   const swiper = useSwiper();
 
   useEffect(() => {
+    if (!swiper) return; // Make sure swiper exists
     swiper.slideTo(0);
-  }, [data]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]); // Only re-run when data changes
 
-  return <></>;
+  return null; // No need for <></>
 };
 
 function Carousel({ data, renderComponent }) {
