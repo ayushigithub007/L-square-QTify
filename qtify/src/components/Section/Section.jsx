@@ -15,14 +15,14 @@ export default function Section({ title, data, filterSource, type }) {
     setCarouselToggle((prevState) => !prevState);
   };
 
-  useEffect(() => {
-    if (filterSource) {
-      filterSource().then((response) => {
-        const { data } = response;
-        setFilters([...filters, ...data]);
-      });
-    }
-  }, []);
+useEffect(() => {
+  if (filterSource) {
+    filterSource().then((response) => {
+      const { data } = response;
+      setFilters((prev) => [...prev, ...data]);
+    });
+  }
+}, [filterSource]);
 
   const showFilters = filters.length > 1; //true
   const cardsToRender = data.filter((card) =>
